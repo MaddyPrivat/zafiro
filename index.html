@@ -95,54 +95,55 @@ header p{
   background:var(--white);
   display:none;
   border-bottom:3px solid var(--navy);
-  padding:0 6px;
+  width:100%;
 }
 .js .tabs{display:flex}
 .tab{
-  flex:1;
+  flex:1 1 25%;
+  width:25%;
   border:none;
   background:none;
   color:var(--muted);
   font-family:'Jost',sans-serif;
   font-weight:600;
-  font-size:.72rem;
-  letter-spacing:.15em;
+  font-size:.6rem;
+  letter-spacing:.01em;
   text-transform:uppercase;
-  padding:14px 6px 11px;
+  padding:11px 1px 9px;
   cursor:pointer;
   border-bottom:4px solid transparent;
   transition:color .15s,border-color .15s;
-  position:relative;
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:6px;
+  gap:4px;
 }
 .tab-label{
   display:flex;
   align-items:center;
-  gap:8px;
-  width:100%;
+  gap:4px;
   justify-content:center;
 }
+.tab-label > span:last-child{white-space:nowrap}
 .status-dot{
   width:8px;height:8px;
   border-radius:50%;
   background:#ccc;
   flex:0 0 8px;
 }
-.status-dot.open{background:#2EAB50;box-shadow:0 0 6px rgba(46,171,80,.6)}
-.status-dot.closed{background:#D1443B;box-shadow:0 0 6px rgba(209,68,59,.6)}
-.status-dot.eve{background:#BE9B5C;box-shadow:0 0 6px rgba(190,155,92,.4)}
+.status-dot.open{background:#2EAB50;box-shadow:0 0 5px rgba(46,171,80,.7)}
+.status-dot.closed{background:#D1443B;box-shadow:0 0 5px rgba(209,68,59,.7)}
+.status-dot.eve{background:#BE9B5C;box-shadow:0 0 5px rgba(190,155,92,.5)}
 .tab small{
   display:block;
   font-family:'Jost',sans-serif;
   font-weight:400;
-  font-size:.54rem;
-  letter-spacing:.06em;
+  font-size:.5rem;
+  letter-spacing:.02em;
   text-transform:none;
   opacity:.65;
-  line-height:1.2;
+  line-height:1.1;
+  white-space:nowrap;
 }
 .tab.active{color:var(--navy);border-bottom-color:var(--navy)}
 .tab:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
@@ -484,24 +485,20 @@ footer::before{
 <div class="noscript-note">📋 Du ser den simple visning med alle fire menukort under hinanden. Åbn filen i <b>Safari eller Chrome</b> for at få faner, søgning, favoritter og åbningstider.</div>
 
 <div class="tabs" role="tablist">
-<div class="tabs" role="tablist">
-<div class="noscript-note">📋 Du ser den simple visning med alle fire menukort under hinanden. Åbn filen i <b>Safari eller Chrome</b> for at få faner, søgning, favoritter og åbningstider.</div>
-
-<div class="tabs" role="tablist">
   <button class="tab active" id="tab-rest" role="tab" aria-selected="true">
-    <div class="tab-label"><span class="status-dot open"></span><span>🍽️ Frokost</span></div>
+    <div class="tab-label"><span class="status-dot open"></span><span>Frokost</span></div>
     <small>12:30–16:00</small>
   </button>
   <button class="tab" id="tab-pool" role="tab" aria-selected="false">
-    <div class="tab-label"><span class="status-dot open"></span><span>🍹 Poolbar</span></div>
+    <div class="tab-label"><span class="status-dot open"></span><span>Poolbar</span></div>
     <small>10:30–18:00</small>
   </button>
   <button class="tab" id="tab-lounge" role="tab" aria-selected="false">
-    <div class="tab-label"><span class="status-dot eve"></span><span>🌙 Lounge</span></div>
-    <small>Aften &amp; shows</small>
+    <div class="tab-label"><span class="status-dot eve"></span><span>Lounge</span></div>
+    <small>Aften</small>
   </button>
   <button class="tab" id="tab-alacarte" role="tab" aria-selected="false">
-    <div class="tab-label"><span class="status-dot eve"></span><span>✨ À la carte</span></div>
+    <div class="tab-label"><span class="status-dot eve"></span><span>À la carte</span></div>
     <small>Aftenmenu</small>
   </button>
 </div>
@@ -5782,11 +5779,15 @@ function applyFilters(){
 let observer = null;
 function watchChips(){
   if(observer){ observer.disconnect(); observer = null; }
+  miniChips.classList.remove("show");
   const wrap = venueEl(current).querySelector(".chips-wrap");
   if(!wrap || !("IntersectionObserver" in window)) return;
   observer = new IntersectionObserver(entries=>{
-    miniChips.classList.toggle("show", !entries[0].isIntersecting);
-  }, {rootMargin:"-90px 0px 0px 0px"});
+    const e = entries[0];
+    // only show once the chips have actually scrolled above the viewport top
+    const above = e.boundingClientRect.top < 0;
+    miniChips.classList.toggle("show", !e.isIntersecting && above);
+  }, {rootMargin:"-110px 0px 0px 0px", threshold:0});
   observer.observe(wrap);
 }
 function buildMini(){
