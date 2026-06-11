@@ -96,8 +96,13 @@ header p{
   display:none;
   border-bottom:3px solid var(--navy);
   width:100%;
+  transition:background .2s,border-color .2s;
 }
 .js .tabs{display:flex}
+.tabs.scrolled{
+  background:var(--navy);
+  border-bottom-color:var(--navy-deep);
+}
 .tab{
   flex:1 1 25%;
   width:25%;
@@ -118,6 +123,9 @@ header p{
   align-items:center;
   gap:4px;
 }
+.tabs.scrolled .tab{color:#9FB1C0}
+.tabs.scrolled .tab small{color:#7E93A4}
+.tabs.scrolled .tab.active{color:#FFFFFF;border-bottom-color:var(--gold)}
 .tab-label{
   display:flex;
   align-items:center;
@@ -490,20 +498,20 @@ footer::before{
 
 <div class="tabs" role="tablist">
   <button class="tab active" id="tab-rest" role="tab" aria-selected="true">
-    <div class="tab-label"><span class="status-dot open"></span><span>Frokost</span></div>
+    <div class="tab-label"><span class="status-dot"></span><span>Frokost</span></div>
     <small>12:30–16:00</small>
   </button>
   <button class="tab" id="tab-pool" role="tab" aria-selected="false">
-    <div class="tab-label"><span class="status-dot open"></span><span>Poolbar</span></div>
+    <div class="tab-label"><span class="status-dot"></span><span>Poolbar</span></div>
     <small>10:30–18:00</small>
   </button>
   <button class="tab" id="tab-lounge" role="tab" aria-selected="false">
-    <div class="tab-label"><span class="status-dot eve"></span><span>Lounge</span></div>
-    <small>Aften</small>
+    <div class="tab-label"><span class="status-dot"></span><span>Lounge</span></div>
+    <small>18–01</small>
   </button>
   <button class="tab" id="tab-alacarte" role="tab" aria-selected="false">
-    <div class="tab-label"><span class="status-dot eve"></span><span>À la carte</span></div>
-    <small>Aftenmenu</small>
+    <div class="tab-label"><span class="status-dot"></span><span>À la carte</span></div>
+    <small>19–23</small>
   </button>
 </div>
 <div class="mini-chips" id="miniChips" aria-label="Hop til kategori"></div>
@@ -5734,6 +5742,34 @@ function updateStatus(){
   const p = document.getElementById("status-pool");
   if(r) r.innerHTML = range(750,960,"Køkkenet");
   if(p) p.innerHTML = range(630,1080,"Poolbaren");
+  updateTabDots();
+}
+
+/* Opening hours per venue (minutes from midnight) */
+const HOURS = {
+  rest:     [750, 960],   // 12:30 - 16:00
+  pool:     [630, 1080],  // 10:30 - 18:00
+  lounge:   [1080, 1500], // 18:00 - 01:00 (1500 = 25:00, dvs. 01:00)
+  alacarte: [1140, 1380]  // 19:00 - 23:00
+};
+function isOpen(tab){
+  const now = new Date();
+  let cur = now.getHours()*60 + now.getMinutes();
+  const [open, close] = HOURS[tab];
+  if(close > 1440){ // åbent over midnat
+    return cur >= open || cur < (close - 1440);
+  }
+  return cur >= open && cur < close;
+}
+function updateTabDots(){
+  TABS.forEach(t=>{
+    const dot = document.querySelector("#tab-"+t+" .status-dot");
+    if(!dot) return;
+    const open = isOpen(t);
+    dot.classList.remove("open","closed","eve");
+    dot.classList.add(open ? "open" : "closed");
+    dot.title = open ? "Åbent nu" : "Lukket nu";
+  });
 }
 updateStatus();
 setInterval(updateStatus, 60000);
@@ -5784,13 +5820,15 @@ let observer = null;
 function watchChips(){
   if(observer){ observer.disconnect(); observer = null; }
   miniChips.classList.remove("show");
+  document.querySelector(".tabs").classList.remove("scrolled");
   const wrap = venueEl(current).querySelector(".chips-wrap");
   if(!wrap || !("IntersectionObserver" in window)) return;
   observer = new IntersectionObserver(entries=>{
     const e = entries[0];
-    // only show once the chips have actually scrolled above the viewport top
     const above = e.boundingClientRect.top < 0;
-    miniChips.classList.toggle("show", !e.isIntersecting && above);
+    const show = !e.isIntersecting && above;
+    miniChips.classList.toggle("show", show);
+    document.querySelector(".tabs").classList.toggle("scrolled", show);
   }, {rootMargin:"-110px 0px 0px 0px", threshold:0});
   observer.observe(wrap);
 }
