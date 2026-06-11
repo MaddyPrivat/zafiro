@@ -5,400 +5,474 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zafiro Ferieguide · All Inclusive</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-<style>
-:root{
-  --sand:#EFEAE0;
-  --card:#FCFAF5;
-  --ink:#14304F;
-  --ink-soft:#4A6076;
-  --pool:#2E9BA6;
-  --pool-deep:#1F7B85;
-  --sun:#F2B33D;
-  --line:#DCD4C4;
-  --ok:#2F8F5B;
-  --ok-bg:#E3F2E9;
-  --sup:#9A6A12;
-  --sup-bg:#FAEFD7;
-  --fav:#C7402F;
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>:root{
+  --navy:#13293C;
+  --navy-deep:#0C1D2C;
+  --cream:#F2EFE7;
+  --paper:#FBFAF5;
+  --ink:#22394C;
+  --muted:#71808C;
+  --gold:#BE9B5C;
+  --gold-soft:#E6D9BE;
+  --hair:#DFD8C8;
+  --ok:#3D7C5C;
+  --warn:#A86A1F;
+  --closed:#A8503E;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth}
 body{
   font-family:'Nunito Sans',sans-serif;
-  background:var(--sand);
+  background:var(--cream);
   color:var(--ink);
   font-size:16px;
-  line-height:1.45;
-  padding-bottom:60px;
+  line-height:1.55;
+  padding-bottom:0;
 }
+/* ---------- Hero ---------- */
 header{
-  background:linear-gradient(165deg,#14304F 0%,#1C5070 45%,#1F7B85 78%,#2E9BA6 100%);
-  color:#FBF8F1;
-  padding:30px 18px 0;
+  background:linear-gradient(180deg,var(--navy-deep) 0%,var(--navy) 100%);
+  color:#F4F0E6;
+  padding:54px 22px 46px;
   text-align:center;
-  position:relative;
-  overflow:hidden;
-}
-header::before{ /* sol */
-  content:"";
-  position:absolute;
-  top:-46px; right:-36px;
-  width:150px; height:150px;
-  border-radius:50%;
-  background:radial-gradient(circle, rgba(242,179,61,.85) 0%, rgba(242,179,61,.25) 55%, transparent 72%);
-  pointer-events:none;
-}
-header::after{ /* måne-skær i venstre side */
-  content:"";
-  position:absolute;
-  bottom:-60px; left:-50px;
-  width:180px; height:180px;
-  border-radius:50%;
-  background:radial-gradient(circle, rgba(255,255,255,.14) 0%, transparent 70%);
-  pointer-events:none;
 }
 .eyebrow{
-  font-size:.68rem;
-  font-weight:800;
-  letter-spacing:.28em;
+  font-family:'Jost',sans-serif;
+  font-weight:500;
+  font-size:.66rem;
+  letter-spacing:.42em;
   text-transform:uppercase;
-  color:#9ED4DB;
+  color:var(--gold);
+}
+.hero-rule{
+  width:42px;height:1px;
+  background:var(--gold);
+  margin:18px auto 16px;
+  opacity:.85;
 }
 header h1{
-  font-family:'Comfortaa',cursive;
-  font-weight:700;
-  font-size:1.7rem;
-  letter-spacing:.02em;
-  margin-top:6px;
-  text-shadow:0 2px 14px rgba(0,0,0,.25);
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  font-size:2.15rem;
+  letter-spacing:.06em;
 }
-header p{font-size:.88rem;color:#CFE4EF;margin-top:6px}
-.emoji-strip{
-  margin-top:12px;
-  font-size:1.05rem;
-  letter-spacing:.55em;
-  opacity:.95;
+header p{
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  font-size:.92rem;
+  letter-spacing:.04em;
+  color:#C2CBD3;
+  margin-top:10px;
 }
-.wave{display:block;width:100%;height:30px;margin-top:14px;position:relative}
+.hero-venues{
+  margin-top:22px;
+  font-family:'Jost',sans-serif;
+  font-weight:400;
+  font-size:.66rem;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:#8DA0AF;
+}
+/* ---------- Notes ---------- */
 .ai-note{
-  margin:14px 16px 0;
-  background:var(--ok-bg);
-  border:1px solid #BFDECB;
-  color:#1F5C3B;
-  border-radius:14px;
-  padding:10px 14px;
+  margin:26px 18px 0;
+  background:var(--paper);
+  border:1px solid var(--hair);
+  color:var(--ink);
+  padding:16px 18px;
   font-size:.85rem;
 }
-.ai-note b{color:#15482C}
+.ai-note .note-label{
+  display:block;
+  font-family:'Jost',sans-serif;
+  font-weight:500;
+  font-size:.62rem;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:6px;
+}
+.ai-note b{font-weight:700}
+.noscript-note{
+  margin:14px 18px 0;
+  background:#F7EFE0;
+  border:1px solid var(--gold-soft);
+  color:#7A5E2E;
+  padding:12px 16px;
+  font-size:.84rem;
+}
+.js .noscript-note{display:none}
 /* ---------- Tabs ---------- */
 .tabs{
   position:sticky;
   top:0;
   z-index:30;
-  background:var(--sand);
-  padding:12px 12px 8px;
-  display:flex;
-  gap:6px;
-  box-shadow:0 6px 14px -12px rgba(20,48,79,.45);
+  background:var(--cream);
+  display:none;
+  border-bottom:1px solid var(--hair);
+  padding:0 6px;
 }
+.js .tabs{display:flex}
 .tab{
   flex:1;
-  border:2px solid var(--ink);
-  background:var(--card);
-  color:var(--ink);
-  font-family:'Comfortaa',cursive;
-  font-weight:700;
-  font-size:.7rem;
-  border-radius:16px;
-  padding:9px 2px 7px;
+  border:none;
+  background:none;
+  color:var(--muted);
+  font-family:'Jost',sans-serif;
+  font-weight:500;
+  font-size:.66rem;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  padding:15px 2px 12px;
   cursor:pointer;
-  transition:background .15s,color .15s;
+  border-bottom:2px solid transparent;
+  transition:color .15s,border-color .15s;
 }
 .tab small{
   display:block;
-  font-family:'Nunito Sans',sans-serif;
-  font-weight:600;
-  font-size:.55rem;
-  margin-top:2px;
-  opacity:.75;
-  line-height:1.25;
+  font-family:'Jost',sans-serif;
+  font-weight:400;
+  font-size:.56rem;
+  letter-spacing:.06em;
+  text-transform:none;
+  margin-top:3px;
+  opacity:.7;
 }
-.tab.active{background:var(--ink);color:#FBF8F1}
-.tab:focus-visible{outline:3px solid var(--pool);outline-offset:2px}
+.tab.active{color:var(--navy);border-bottom-color:var(--gold)}
+.tab:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
 /* ---------- Mini sticky category bar ---------- */
 .mini-chips{
   position:sticky;
-  top:74px;
+  top:57px;
   z-index:28;
-  background:var(--sand);
-  gap:6px;
+  background:var(--cream);
+  gap:8px;
   overflow-x:auto;
-  padding:6px 16px 9px;
+  padding:9px 18px 11px;
   scrollbar-width:none;
   display:none;
-  box-shadow:0 6px 12px -12px rgba(20,48,79,.5);
+  border-bottom:1px solid var(--hair);
 }
 .mini-chips.show{display:flex}
 .mini-chips::-webkit-scrollbar{display:none}
 .mini-chip{
   flex:0 0 auto;
-  border:1.5px solid var(--line);
-  background:var(--card);
+  border:1px solid var(--hair);
+  background:var(--paper);
   color:var(--ink);
-  border-radius:999px;
-  padding:6px 11px;
-  font-size:.74rem;
-  font-weight:700;
+  padding:6px 13px;
+  font-family:'Jost',sans-serif;
+  font-weight:400;
+  font-size:.66rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
   white-space:nowrap;
   cursor:pointer;
+  text-decoration:none;
 }
-.mini-chip:focus-visible{outline:3px solid var(--pool);outline-offset:2px}
-/* ---------- Category chips ---------- */
-.chips-wrap{
-  padding:14px 16px 2px;
+.mini-chip:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+/* ---------- Search & filters ---------- */
+.search-wrap{padding:20px 18px 0;display:none}
+.js .search-wrap{display:block}
+.search{
+  width:100%;
+  border:1px solid var(--hair);
+  background:var(--paper);
+  padding:13px 16px;
+  font-size:.95rem;
+  font-family:'Nunito Sans',sans-serif;
+  color:var(--ink);
 }
-.chips-label{
+.search::placeholder{color:#A4AEB7;font-style:italic}
+.search:focus{outline:none;border-color:var(--gold)}
+.filters{
+  display:none;
+  gap:8px;
+  overflow-x:auto;
+  padding:12px 18px 0;
+  scrollbar-width:none;
+}
+.js .filters{display:flex}
+.filters::-webkit-scrollbar{display:none}
+.filter{
+  flex:0 0 auto;
+  border:1px solid var(--hair);
+  background:var(--paper);
+  color:var(--muted);
+  padding:8px 14px;
+  font-family:'Jost',sans-serif;
+  font-weight:500;
+  font-size:.64rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  cursor:pointer;
+  white-space:nowrap;
+  transition:all .15s;
+}
+.filter.on{background:var(--navy);border-color:var(--navy);color:var(--cream)}
+.filter:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+/* ---------- Stats ---------- */
+.stats{
+  margin:16px 18px 0;
+  background:var(--paper);
+  border:1px solid var(--gold-soft);
+  border-left:3px solid var(--gold);
+  color:#6E5A30;
+  padding:13px 16px;
+  font-size:.85rem;
+  display:none;
+}
+/* ---------- Status ---------- */
+.status{
   display:block;
+  font-family:'Jost',sans-serif;
+  font-weight:500;
+  font-size:.7rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+.status.open{color:var(--ok)}
+.status.closed{color:var(--closed)}
+.status.eve{color:var(--gold)}
+/* ---------- Venue & sections ---------- */
+main{padding:6px 18px 0}
+.venue-head{
+  margin-top:44px;
+  padding-top:26px;
+  border-top:1px solid var(--hair);
+  text-align:center;
+}
+.venue-head h2{
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  font-size:1.55rem;
+  letter-spacing:.05em;
+}
+.venue-head p{
+  font-family:'Jost',sans-serif;
+  font-weight:400;
   font-size:.72rem;
-  font-weight:800;
   letter-spacing:.12em;
   text-transform:uppercase;
-  color:var(--ink-soft);
-  margin-bottom:8px;
+  color:var(--muted);
+  margin-top:6px;
 }
-.chips{
-  display:flex;
-  flex-wrap:wrap;
-  gap:9px;
+.js .venue-head{display:none}
+.js .venue{display:none}
+.js .venue.active{display:block}
+/* ---------- Category chips ---------- */
+.chips-wrap{padding:26px 0 4px}
+.chips-label{
+  display:block;
+  font-family:'Jost',sans-serif;
+  font-weight:500;
+  font-size:.62rem;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:12px;
 }
+.chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{
-  border:1.5px solid var(--line);
-  background:var(--card);
+  border:1px solid var(--hair);
+  background:var(--paper);
   color:var(--ink);
-  border-radius:14px;
-  padding:10px 14px;
-  font-size:.86rem;
-  font-weight:700;
+  padding:10px 15px;
+  font-family:'Jost',sans-serif;
+  font-weight:400;
+  font-size:.7rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
   cursor:pointer;
   white-space:nowrap;
   display:flex;
   align-items:center;
-  gap:7px;
-  box-shadow:0 2px 6px -4px rgba(20,48,79,.3);
-}
-.chip .c-e{font-size:1.05rem}
-.chip:focus-visible{outline:3px solid var(--pool);outline-offset:2px}
-/* ---------- Search & filters ---------- */
-.search-wrap{padding:4px 16px 2px}
-.search{
-  width:100%;
-  border:1.5px solid var(--line);
-  background:var(--card);
-  border-radius:14px;
-  padding:11px 14px;
-  font-size:.95rem;
-  font-family:inherit;
-  color:var(--ink);
-}
-.search::placeholder{color:#9AA8B6}
-.search:focus{outline:3px solid var(--pool);outline-offset:1px;border-color:var(--pool)}
-.filters{
-  display:flex;
   gap:8px;
-  overflow-x:auto;
-  padding:10px 16px 4px;
-  scrollbar-width:none;
+  text-decoration:none;
+  transition:border-color .15s;
 }
-.filters::-webkit-scrollbar{display:none}
-.filter{
-  flex:0 0 auto;
-  border:1.5px solid var(--line);
-  background:var(--card);
-  color:var(--ink-soft);
-  border-radius:999px;
-  padding:7px 13px;
-  font-size:.8rem;
-  font-weight:800;
-  cursor:pointer;
-  white-space:nowrap;
-}
-.filter.on{background:var(--ink);border-color:var(--ink);color:#FBF8F1}
-.filter:focus-visible{outline:3px solid var(--pool);outline-offset:2px}
-/* ---------- Stats bar ---------- */
-.stats{
-  margin:10px 16px 0;
-  background:#FFF7E3;
-  border:1px solid #ECD9A8;
-  color:#7A5A14;
-  border-radius:14px;
-  padding:10px 14px;
+.chip:hover{border-color:var(--gold)}
+.chip .c-e{font-size:1rem}
+.chip:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+/* ---------- Info box ---------- */
+.info-box{
+  background:var(--paper);
+  border:1px solid var(--hair);
+  padding:15px 18px;
   font-size:.84rem;
-  display:none;
+  color:var(--muted);
+  margin:18px 0 4px;
 }
-/* ---------- Status pill ---------- */
-.status{
-  display:block;
-  font-weight:800;
-  margin-bottom:4px;
-}
-.status.open{color:var(--ok)}
-.status.closed{color:#B23A2C}
-.status.eve{color:var(--pool-deep)}
-/* ---------- Sections & cards ---------- */
-main{padding:6px 16px 0}
-section{margin-top:24px;scroll-margin-top:130px}
+/* ---------- Sections ---------- */
+section{margin-top:38px;scroll-margin-top:120px}
 .sec-head{
-  display:flex;
-  align-items:baseline;
-  gap:10px;
-  border-bottom:2px solid var(--ink);
-  padding-bottom:6px;
-  margin-bottom:12px;
-  flex-wrap:wrap;
+  text-align:center;
+  margin-bottom:20px;
 }
 .sec-head h2{
-  font-family:'Comfortaa',cursive;
-  font-weight:700;
-  font-size:1.18rem;
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  font-size:1.5rem;
+  letter-spacing:.04em;
+  color:var(--navy);
 }
-.sec-head span{font-size:.78rem;color:var(--ink-soft);font-weight:600}
+.sec-head span{
+  display:block;
+  font-family:'Jost',sans-serif;
+  font-weight:400;
+  font-size:.62rem;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-top:5px;
+}
+.sec-head::after{
+  content:"";
+  display:block;
+  width:42px;height:1px;
+  background:var(--hair);
+  margin:14px auto 0;
+}
+/* ---------- Item cards ---------- */
 .item{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:13px 14px;
-  margin-bottom:10px;
+  background:var(--paper);
+  border:1px solid var(--hair);
+  padding:17px 18px;
+  margin-bottom:12px;
   display:flex;
-  gap:12px;
+  gap:14px;
 }
-.item.tried-card{opacity:.82}
+.item.tried-card{opacity:.75}
 .icon{
-  flex:0 0 46px;
-  width:46px;height:46px;
-  background:var(--sand);
-  border:1px solid var(--line);
+  flex:0 0 42px;
+  width:42px;height:42px;
+  background:var(--cream);
+  border:1px solid var(--hair);
   border-radius:50%;
   display:flex;align-items:center;justify-content:center;
-  font-size:1.45rem;
+  font-size:1.2rem;
 }
 .body{flex:1;min-width:0}
-.row1{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
-.name{font-weight:700;font-size:.98rem}
-.orig{font-size:.74rem;color:var(--ink-soft);font-style:italic}
+.row1{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.name{
+  font-family:'Jost',sans-serif;
+  font-weight:500;
+  font-size:1.02rem;
+  letter-spacing:.015em;
+  color:var(--navy);
+}
+.orig{font-size:.74rem;color:var(--muted);font-style:italic;margin-top:1px}
 .price{
   flex:0 0 auto;
   text-align:right;
-  font-weight:700;
-  font-size:.92rem;
+  font-family:'Jost',sans-serif;
+  font-weight:500;
+  font-size:.95rem;
+  color:var(--navy);
   white-space:nowrap;
 }
 .badge{
   display:inline-block;
-  background:var(--ok-bg);
+  font-family:'Jost',sans-serif;
+  font-weight:500;
+  font-size:.56rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
   color:var(--ok);
-  font-size:.62rem;
-  font-weight:800;
-  letter-spacing:.04em;
-  border-radius:6px;
-  padding:2px 6px;
-  margin-top:3px;
+  border:1px solid #BCD5C7;
+  padding:2px 7px;
+  margin-top:5px;
 }
-.badge.sup{background:var(--sup-bg);color:var(--sup)}
-.desc{font-size:.84rem;color:var(--ink-soft);margin-top:5px}
+.badge.sup{color:var(--warn);border-color:var(--gold-soft)}
+.desc{font-size:.85rem;color:var(--muted);margin-top:7px}
 .tag{
   display:inline-block;
-  font-size:.66rem;
-  font-weight:800;
-  border-radius:6px;
-  padding:2px 7px;
-  margin-top:6px;
-  margin-right:4px;
+  font-family:'Jost',sans-serif;
+  font-weight:500;
+  font-size:.56rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  padding:3px 8px;
+  margin-top:9px;
+  margin-right:5px;
+  border:1px solid var(--hair);
+  color:var(--muted);
 }
-.tag.veg{background:#E7F0DC;color:#4C7A2B}
-.tag.spicy{background:#FBE3D6;color:#B14A1F}
-.tag.gf{background:#F4EBD7;color:#8A6A1F}
-.tag.zero{background:#E2EFF4;color:var(--pool-deep)}
-.tag.star{background:#F7ECCB;color:#8A6A1F}
+.tag.veg{color:#557A3A;border-color:#C9DBB8}
+.tag.spicy{color:#A8503E;border-color:#E5C5BB}
+.tag.gf{color:#8A6A1F;border-color:var(--gold-soft)}
+.tag.zero{color:#3A6F7A;border-color:#BFD8DD}
+.tag.star{color:var(--gold);border-color:var(--gold-soft)}
 /* ---------- Action buttons ---------- */
-.actions{display:flex;gap:8px;margin-top:9px}
+.actions{display:none;gap:8px;margin-top:12px}
+.js .actions{display:flex}
 .act{
-  border:1.5px solid var(--line);
-  background:var(--sand);
-  color:var(--ink-soft);
-  border-radius:999px;
-  padding:5px 12px;
-  font-size:.76rem;
-  font-weight:800;
+  border:1px solid var(--hair);
+  background:none;
+  color:var(--muted);
+  padding:6px 14px;
+  font-family:'Jost',sans-serif;
+  font-weight:500;
+  font-size:.6rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
   cursor:pointer;
+  transition:all .15s;
 }
-.act.fav.on{background:#FBE7E2;border-color:#E5A99E;color:var(--fav)}
-.act.try.on{background:var(--ok-bg);border-color:#9CCBAE;color:var(--ok)}
-.act:focus-visible{outline:3px solid var(--pool);outline-offset:2px}
-.info-box{
-  background:var(--card);
-  border:1.5px dashed var(--pool);
-  border-radius:14px;
-  padding:11px 14px;
-  font-size:.84rem;
-  color:var(--ink-soft);
-  margin-bottom:10px;
-}
+.act.fav.on{background:#F6E9E5;border-color:#D8AC9F;color:#A8503E}
+.act.try.on{background:#E8F1EB;border-color:#A9CBB7;color:var(--ok)}
+.act:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
 .empty{
   text-align:center;
-  color:var(--ink-soft);
+  color:var(--muted);
   font-size:.9rem;
-  padding:40px 10px;
+  padding:46px 10px;
   display:none;
 }
+/* ---------- Footer ---------- */
 footer{
-  margin-top:34px;
-  padding:18px 16px 0;
+  margin-top:56px;
+  background:var(--navy-deep);
+  color:#9FAEBA;
   text-align:center;
-  font-size:.75rem;
-  color:var(--ink-soft);
+  font-size:.76rem;
+  line-height:1.9;
+  padding:42px 22px 46px;
 }
+footer::before{
+  content:"ZAFIRO · MALLORCA";
+  display:block;
+  font-family:'Jost',sans-serif;
+  font-weight:500;
+  font-size:.6rem;
+  letter-spacing:.42em;
+  color:var(--gold);
+  margin-bottom:16px;
+}
+/* ---------- Desktop ---------- */
 @media (min-width:640px){
-  main,.ai-note,.stats{max-width:620px;margin-left:auto;margin-right:auto}
-  .tabs,.chips-wrap,.search-wrap,.filters{max-width:652px;margin-left:auto;margin-right:auto}
-  .tab{font-size:.85rem}
+  main,.ai-note,.stats,.noscript-note{max-width:640px;margin-left:auto;margin-right:auto}
+  .tabs,.search-wrap,.filters{max-width:672px;margin-left:auto;margin-right:auto}
+  .mini-chips{padding-left:calc(50vw - 320px);padding-right:calc(50vw - 320px)}
+  header h1{font-size:2.6rem}
+  .tab{font-size:.72rem}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-
-/* ---------- Progressive enhancement ---------- */
-.chip,.mini-chip{text-decoration:none}
-.venue-head{margin-top:34px;padding-top:14px;border-top:4px solid var(--ink)}
-.venue-head h2{font-family:'Comfortaa',cursive;font-size:1.32rem}
-.venue-head p{font-size:.82rem;color:var(--ink-soft);margin-top:2px}
-.js .venue-head{display:none}
-.js .venue{display:none}
-.js .venue.active{display:block}
-.tabs{display:none}
-.js .tabs{display:flex}
-.search-wrap,.filters{display:none}
-.js .search-wrap{display:block}
-.js .filters{display:flex}
-.actions{display:none}
-.js .actions{display:flex}
-.noscript-note{margin:14px 16px 0;background:#FFF3E8;border:1px solid #EBC9A4;color:#8A5A22;border-radius:14px;padding:10px 14px;font-size:.84rem}
-.js .noscript-note{display:none}
-@media (min-width:640px){ .noscript-note{max-width:620px;margin-left:auto;margin-right:auto} }
 </style>
 </head>
 <body>
 
 <header>
   <div class="eyebrow">Zafiro · Mallorca</div>
-  <h1>🌴 Ferieguiden</h1>
+  <div class="hero-rule"></div>
+  <h1>Ferieguiden</h1>
   <p>Alt I kan spise &amp; drikke med All Inclusive</p>
-  <div class="emoji-strip" aria-hidden="true">🍕 🍹 🍦 🥂 🍔</div>
-  <svg class="wave" viewBox="0 0 400 30" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M0 14 Q 25 4 50 14 T 100 14 T 150 14 T 200 14 T 250 14 T 300 14 T 350 14 T 400 14 V30 H0 Z" fill="rgba(255,255,255,.22)"/>
-    <path d="M0 20 Q 25 11 50 20 T 100 20 T 150 20 T 200 20 T 250 20 T 300 20 T 350 20 T 400 20 V30 H0 Z" fill="#EFEAE0"/>
-  </svg>
+  <div class="hero-venues">Frokost &nbsp;·&nbsp; Poolbar &nbsp;·&nbsp; Lounge &nbsp;·&nbsp; À la carte</div>
 </header>
 
-<div class="ai-note">✅ <b>Alt med “all:in” er inkluderet i din All Inclusive.</b> 🟡 <b>“Tillæg”</b> = premium-mærker, hvor du betaler det lille tillægsbeløb. Tryk ♥ for at gemme favoritter og ✓ når I har prøvet noget!</div>
+<div class="ai-note"><span class="note-label">All Inclusive</span>Alt med <b>“all:in”</b> er inkluderet i jeres pakke – priserne er kun til info. Drikke mærket <b>“Tillæg”</b> er premium, hvor I betaler det lille tillægsbeløb. Tryk ♥ for at gemme favoritter og ✓ når I har prøvet noget.</div>
 
 <div class="noscript-note">📋 Du ser den simple visning med alle fire menukort under hinanden. Åbn filen i <b>Safari eller Chrome</b> for at få faner, søgning, favoritter og åbningstider.</div>
 
