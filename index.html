@@ -35,69 +35,48 @@ body{
 header{
   background:linear-gradient(180deg,var(--navy-deep) 0%,var(--navy) 100%);
   color:#F4F0E6;
-  padding:62px 22px 56px;
+  padding:32px 22px 24px;
   text-align:center;
 }
 .eyebrow{
   font-family:'Jost',sans-serif;
   font-weight:500;
-  font-size:.66rem;
-  letter-spacing:.42em;
+  font-size:.62rem;
+  letter-spacing:.4em;
   text-transform:uppercase;
   color:var(--gold);
 }
 .hero-rule{
-  width:48px;height:2px;
+  width:40px;height:1.5px;
   background:var(--gold);
-  margin:22px auto 20px;
+  margin:12px auto 12px;
   opacity:.9;
 }
 header h1{
   font-family:'Jost',sans-serif;
   font-weight:300;
-  font-size:2.5rem;
-  letter-spacing:.08em;
+  font-size:1.8rem;
+  letter-spacing:.07em;
 }
 header p{
   font-family:'Jost',sans-serif;
   font-weight:300;
-  font-size:.96rem;
-  letter-spacing:.05em;
+  font-size:.88rem;
+  letter-spacing:.04em;
   color:#C2CBD3;
-  margin-top:12px;
+  margin-top:8px;
 }
 .hero-venues{
-  margin-top:28px;
+  margin-top:14px;
   font-family:'Jost',sans-serif;
   font-weight:400;
-  font-size:.68rem;
-  letter-spacing:.3em;
+  font-size:.64rem;
+  letter-spacing:.28em;
   text-transform:uppercase;
   color:#8DA0AF;
 }
 /* ---------- Notes ---------- */
-.ai-note{
-  margin:34px 18px 0;
-  background:var(--white);
-  border-left:4px solid var(--navy);
-  border-top:1px solid var(--hair);
-  border-right:1px solid var(--hair);
-  border-bottom:1px solid var(--hair);
-  color:var(--ink);
-  padding:18px 20px;
-  font-size:.86rem;
-}
-.ai-note .note-label{
-  display:block;
-  font-family:'Jost',sans-serif;
-  font-weight:600;
-  font-size:.62rem;
-  letter-spacing:.3em;
-  text-transform:uppercase;
-  color:var(--navy);
-  margin-bottom:8px;
-}
-.ai-note b{font-weight:700;color:var(--navy)}
+.ai-note{display:none}
 .noscript-note{
   margin:20px 18px 0;
   background:var(--paper);
@@ -115,7 +94,7 @@ header p{
   z-index:30;
   background:var(--white);
   display:none;
-  border-bottom:2px solid var(--navy);
+  border-bottom:3px solid var(--navy);
   padding:0 6px;
 }
 .js .tabs{display:flex}
@@ -125,24 +104,45 @@ header p{
   background:none;
   color:var(--muted);
   font-family:'Jost',sans-serif;
-  font-weight:500;
-  font-size:.68rem;
-  letter-spacing:.14em;
+  font-weight:600;
+  font-size:.72rem;
+  letter-spacing:.15em;
   text-transform:uppercase;
-  padding:16px 2px 13px;
+  padding:14px 6px 11px;
   cursor:pointer;
-  border-bottom:3px solid transparent;
+  border-bottom:4px solid transparent;
   transition:color .15s,border-color .15s;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
 }
+.tab-label{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  width:100%;
+  justify-content:center;
+}
+.status-dot{
+  width:8px;height:8px;
+  border-radius:50%;
+  background:#ccc;
+  flex:0 0 8px;
+}
+.status-dot.open{background:#2EAB50;box-shadow:0 0 6px rgba(46,171,80,.6)}
+.status-dot.closed{background:#D1443B;box-shadow:0 0 6px rgba(209,68,59,.6)}
+.status-dot.eve{background:#BE9B5C;box-shadow:0 0 6px rgba(190,155,92,.4)}
 .tab small{
   display:block;
   font-family:'Jost',sans-serif;
   font-weight:400;
-  font-size:.56rem;
+  font-size:.54rem;
   letter-spacing:.06em;
   text-transform:none;
-  margin-top:3px;
   opacity:.65;
+  line-height:1.2;
 }
 .tab.active{color:var(--navy);border-bottom-color:var(--navy)}
 .tab:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
@@ -308,15 +308,7 @@ main{padding:0}
 .chip .c-e{font-size:1.1rem}
 .chip:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
 /* ---------- Info box ---------- */
-.info-box{
-  background:var(--paper);
-  border:1.5px solid var(--navy);
-  border-left:4px solid var(--gold);
-  padding:16px 18px;
-  font-size:.85rem;
-  color:var(--muted);
-  margin:20px 18px 0;
-}
+.info-box{display:none}
 /* ---------- Sections ---------- */
 section{
   margin-top:0;
@@ -489,17 +481,30 @@ footer::before{
   <div class="hero-venues">Frokost &nbsp;·&nbsp; Poolbar &nbsp;·&nbsp; Lounge &nbsp;·&nbsp; À la carte</div>
 </header>
 
-<div class="ai-note"><span class="note-label">All Inclusive</span>Alt med <b>“all:in”</b> er inkluderet i jeres pakke – priserne er kun til info. Drikke mærket <b>“Tillæg”</b> er premium, hvor I betaler det lille tillægsbeløb. Tryk ♥ for at gemme favoritter og ✓ når I har prøvet noget.</div>
-
 <div class="noscript-note">📋 Du ser den simple visning med alle fire menukort under hinanden. Åbn filen i <b>Safari eller Chrome</b> for at få faner, søgning, favoritter og åbningstider.</div>
 
 <div class="tabs" role="tablist">
-  <button class="tab active" id="tab-rest" role="tab" aria-selected="true">🍽️ Frokost<small>12:30–16:00</small></button>
-  <button class="tab" id="tab-pool" role="tab" aria-selected="false">🍹 Poolbar<small>10:30–18:00</small></button>
-  <button class="tab" id="tab-lounge" role="tab" aria-selected="false">🌙 Lounge<small>Aften &amp; shows</small></button>
-  <button class="tab" id="tab-alacarte" role="tab" aria-selected="false">✨ À la carte<small>Aftenmenu</small></button>
-</div>
+<div class="tabs" role="tablist">
+<div class="noscript-note">📋 Du ser den simple visning med alle fire menukort under hinanden. Åbn filen i <b>Safari eller Chrome</b> for at få faner, søgning, favoritter og åbningstider.</div>
 
+<div class="tabs" role="tablist">
+  <button class="tab active" id="tab-rest" role="tab" aria-selected="true">
+    <div class="tab-label"><span class="status-dot open"></span><span>🍽️ Frokost</span></div>
+    <small>12:30–16:00</small>
+  </button>
+  <button class="tab" id="tab-pool" role="tab" aria-selected="false">
+    <div class="tab-label"><span class="status-dot open"></span><span>🍹 Poolbar</span></div>
+    <small>10:30–18:00</small>
+  </button>
+  <button class="tab" id="tab-lounge" role="tab" aria-selected="false">
+    <div class="tab-label"><span class="status-dot eve"></span><span>🌙 Lounge</span></div>
+    <small>Aften &amp; shows</small>
+  </button>
+  <button class="tab" id="tab-alacarte" role="tab" aria-selected="false">
+    <div class="tab-label"><span class="status-dot eve"></span><span>✨ À la carte</span></div>
+    <small>Aftenmenu</small>
+  </button>
+</div>
 <div class="mini-chips" id="miniChips" aria-label="Hop til kategori"></div>
 
 <div class="search-wrap">
